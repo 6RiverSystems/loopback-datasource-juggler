@@ -14,7 +14,7 @@ describe('DataSource', function() {
       // this is what LoopBack does
       return new DataSource({
         name: 'dsname',
-        connector: throwingConnector
+        connector: throwingConnector,
       });
     }).should.throw(/loopback-connector-throwing/);
   });

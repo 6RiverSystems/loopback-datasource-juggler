@@ -12,12 +12,12 @@ var Memory = require('../lib/connectors/memory').Memory;
 var HOOK_NAMES = [
   'access',
   'before save', 'persist', 'loaded', 'after save',
-  'before delete', 'after delete'
+  'before delete', 'after delete',
 ];
 
 var dataSources = [
   createOptimizedDataSource(),
-  createUnoptimizedDataSource()
+  createUnoptimizedDataSource(),
 ];
 
 var observedContexts = [];
@@ -29,7 +29,7 @@ Promise.onPossiblyUnhandledRejection(function(err) {
 
 var operations = [
   function find(ds) {
-    return ds.TestModel.find({ where: { id: '1' } });
+    return ds.TestModel.find({ where: { id: '1' }});
   },
 
   function count(ds) {
@@ -42,13 +42,13 @@ var operations = [
 
   function findOrCreate_found(ds) {
     return ds.TestModel.findOrCreate(
-      { where: { name: ds.existingInstance.name } },
+      { where: { name: ds.existingInstance.name }},
       { name: ds.existingInstance.name });
   },
 
   function findOrCreate_create(ds) {
     return ds.TestModel.findOrCreate(
-      { where: { name: 'new-record' } },
+      { where: { name: 'new-record' }},
       { name: 'new-record' });
   },
 
@@ -129,7 +129,7 @@ function setupTestModels() {
     var TestModel = ds.TestModel = ds.createModel('TestModel', {
       id: { type: String, id: true, default: uid },
       name: { type: String, required: true },
-      extra: { type: String, required: false }
+      extra: { type: String, required: false },
     });
   });
   return Promise.resolve();
@@ -150,7 +150,7 @@ function runner(fn) {
         observedContexts.push({
           operation: fn.name,
           connector: ds.name,
-          hooks: {}
+          hooks: {},
         });
         return fn(ds);
       });
@@ -166,11 +166,11 @@ function resetStorage(ds) {
   });
   return TestModel.deleteAll()
     .then(function() {
-      return TestModel.create({ name: 'first' })
+      return TestModel.create({ name: 'first' });
     })
     .then(function(instance) {
       // Look it up from DB so that default values are retrieved
-      return TestModel.findById(instance.id)
+      return TestModel.findById(instance.id);
     })
     .then(function(instance) {
       ds.existingInstance = instance;
@@ -179,7 +179,7 @@ function resetStorage(ds) {
     .then(function() {
       HOOK_NAMES.forEach(function(hook) {
         TestModel.observe(hook, function(ctx, next) {
-          var row = observedContexts[observedContexts.length-1];
+          var row = observedContexts[observedContexts.length - 1];
           row.hooks[hook] = Object.keys(ctx);
           next();
         });
@@ -188,7 +188,7 @@ function resetStorage(ds) {
 }
 
 function report() {
-  console.log('<style>')
+  console.log('<style>');
   console.log('td { font-family: "monospace": }');
   console.log('td, th {');
   console.log('  vertical-align: text-top;');
@@ -199,7 +199,7 @@ function report() {
   // merge rows where Optimized and Unoptimized produce the same context
   observedContexts.forEach(function(row, ix) {
     if (!ix) return;
-    var last = observedContexts[ix-1];
+    var last = observedContexts[ix - 1];
     if (row.operation != last.operation) return;
     if (JSON.stringify(row.hooks) !== JSON.stringify(last.hooks)) return;
     last.merge = true;
