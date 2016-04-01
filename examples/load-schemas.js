@@ -17,7 +17,6 @@ function loadSchemasSync(schemaFile, dataSource) {
   var schemas = JSON.parse(fs.readFileSync(schemaFile));
 
   return dataSource.buildModels(schemas);
-
 }
 
 var models = loadSchemasSync(path.join(__dirname, 'jdb-schemas.json'));

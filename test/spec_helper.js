@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /*
  if (!process.env.TRAVIS) {
  var semicov = require('semicov');

@@ -12,7 +12,7 @@ describe('Datasource-specific field types for foreign keys', function() {
         'id': true,
         'type': 'string',
         'memory': {
-          'dataType': "string",
+          'dataType': 'string',
         },
       },
     });
@@ -22,7 +22,7 @@ describe('Datasource-specific field types for foreign keys', function() {
           'type': 'belongsTo',
           'as': 'item',
           'model': 'Item',
-          'foreignKey': "myProp",
+          'foreignKey': 'myProp',
         },
       },
     });

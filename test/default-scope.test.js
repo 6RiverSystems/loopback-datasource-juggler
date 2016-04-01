@@ -135,7 +135,7 @@ describe('default scope', function() {
     });
 
     it('should return a scoped instance', function() {
-      var p = new Tool({ name: 'Product A', kind:'ignored' });
+      var p = new Tool({ name: 'Product A', kind: 'ignored' });
       p.name.should.equal('Product A');
       p.kind.should.equal('Tool');
       p.setAttributes({ kind: 'ignored' });
@@ -644,7 +644,7 @@ describe('default scope', function() {
     });
 
     it('should create a scoped instance - widget', function(done) {
-      Widget.create({ name: 'Product', kind:'ignored' }, function(err, p) {
+      Widget.create({ name: 'Product', kind: 'ignored' }, function(err, p) {
         p.name.should.equal('Product');
         p.kind.should.equal('Widget');
         done();
@@ -652,7 +652,7 @@ describe('default scope', function() {
     });
 
     it('should create a scoped instance - thing', function(done) {
-      Thing.create({ name: 'Product', kind:'ignored' }, function(err, p) {
+      Thing.create({ name: 'Product', kind: 'ignored' }, function(err, p) {
         p.name.should.equal('Product');
         p.kind.should.equal('Thing');
         done();

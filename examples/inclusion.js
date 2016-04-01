@@ -4,7 +4,6 @@ var User, Post, Passport, City, Street, Building;
 var nbSchemaRequests = 0;
 
 setup(function() {
-
   Passport.find({ include: 'owner' }, function(err, passports) {
     console.log('passports.owner', passports);
   });
@@ -26,7 +25,6 @@ setup(function() {
   User.find({ include: ['posts', 'passports'] }, function(err, users) {
     console.log('users.passports && users.posts', users);
   });
-
 });
 
 function setup(done) {
@@ -103,7 +101,6 @@ function setup(done) {
         }
       );
     }
-
   });
 }
 
